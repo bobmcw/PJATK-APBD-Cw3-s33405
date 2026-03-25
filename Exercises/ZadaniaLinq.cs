@@ -158,7 +158,7 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie10_DrugaStronaPrzedmiotow()
     {
-        throw Niezaimplementowano(nameof(Zadanie10_DrugaStronaPrzedmiotow));
+        return DaneUczelni.Przedmioty.GetRange(1, 2).Select(p => $"{p.Nazwa} {p.Kategoria}").ToList();
     }
 
     /// <summary>
