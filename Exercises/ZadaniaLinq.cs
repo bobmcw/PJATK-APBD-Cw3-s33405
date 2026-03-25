@@ -82,7 +82,7 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie05_CzyIstniejeNieaktywneZapisanie()
     {
-        throw Niezaimplementowano(nameof(Zadanie05_CzyIstniejeNieaktywneZapisanie));
+        return [DaneUczelni.Zapisy.Exists(z => !z.CzyAktywny) ? "True" :  "False"];
     }
 
     /// <summary>
