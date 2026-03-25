@@ -97,7 +97,7 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie06_CzyWszyscyProwadzacyMajaKatedre()
     {
-        return [DaneUczelni.Prowadzacy.Exists(p => false) ? "False" :  "True"];
+        return [DaneUczelni.Prowadzacy.Exists(p => p.Katedra == "") ? "False" :  "True"];
     }
 
     /// <summary>
