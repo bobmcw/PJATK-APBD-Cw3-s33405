@@ -252,7 +252,7 @@ public sealed class ZadaniaLinq
                 przedmiot => przedmiot.ProwadzacyId,
                 (prowadzacy, przedmiot) => new { prowadzacy.Imie, prowadzacy.Nazwisko, przedmiot })
             .GroupBy(p => new { p.Imie, p.Nazwisko })
-            .Select(p => $"{p.Key} {p.Count()}");
+            .Select(p => $"{p.Key.Imie} {p.Key.Nazwisko} {p.Count()}");
     }
 
     /// <summary>
@@ -269,7 +269,11 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie16_NajwyzszaOcenaKazdegoStudenta()
     {
-        throw Niezaimplementowano(nameof(Zadanie16_NajwyzszaOcenaKazdegoStudenta));
+        return DaneUczelni.Studenci.Join(DaneUczelni.Zapisy, student => student.Id, zapis => zapis.StudentId,
+                (student, zapis) =>
+                    new { student.Imie, student.Nazwisko, student.Id, zapis.OcenaKoncowa })
+            .GroupBy(s => new { s.Imie, s.Nazwisko })
+            .Select(s => $"{s.Key.Imie} {s.Key.Nazwisko} {s.Max(x => x.OcenaKoncowa)}");
     }
 
     /// <summary>
